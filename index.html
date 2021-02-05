@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VA Transcript Counter</title>
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <script src="JS/script.js" defer></script>
+    </head>
+    <body>
+        <main>
+            <div>
+                <h1>Conversation Transcript Counter</h1>
+                <p>Use this tool to highight any common words in a conversation transcript.</p>
+            </div>
+            <div class="input-container">
+                <textarea id="transcript"></textarea>
+                    <br>
+                <button onclick="countWords()" id="start-count">Count</button>
+            </div>
+            <div class="results-output">
+                <table id="results-table">
+                    <tr id="heading-row">
+                        <th>Word</th>
+                        <th>Count</th>
+                    </tr>
+                </table>
+                <button>Clear</button>
+            </div>
+        </main>
+    </body>
+</html>

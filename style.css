@@ -1,0 +1,38 @@
+main {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    text-align: center;
+}
+
+.input-container #transcript {
+    width: 80%;
+    height: 300px;
+}
+
+.input-container #start-count {
+    width: 80%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#results-table th{
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    font-weight: bold;
+}
+
+#results-table td{
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
