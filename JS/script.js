@@ -46,7 +46,7 @@ function loopThroughTranscript(transcriptArray){
             resultArray.push(transcriptWord);
         }
     }
-    createResultsTable(resultArray)
+    createResultsTable(resultArray);
 }
 
 function createResultsTable(resultArray){
@@ -61,12 +61,15 @@ function createResultsTable(resultArray){
             continue;
         }
         var tableRow = document.createElement("tr");
+        tableRow.setAttribute("class","word-count-result");
         
         var wordField = document.createElement("td");
+        wordField.setAttribute("class","result-word");
         var wordText = document.createTextNode(resultArray[i].word);
-        wordField.appendChild(wordText)
+        wordField.appendChild(wordText);
         
         var countField = document.createElement("td");
+        countField.setAttribute("class","result-count");
         var countText = document.createTextNode(resultArray[i].count);
         countField.appendChild(countText);
         
@@ -74,6 +77,8 @@ function createResultsTable(resultArray){
         tableRow.appendChild(countField);
         RESULTTABLE.appendChild(tableRow);
     }
+
+    sortTable();
 }
 
 function clearTable(clearTranscript){
@@ -91,6 +96,39 @@ function clearTable(clearTranscript){
         document.querySelector(".input-container #transcript").value = "";
         document.querySelector(".input-container #transcript").focus();
     }
+}
+
+function sortTable() {
+    const TABLEROWS = document.querySelectorAll(".word-count-result");
+
+    var keepSorting = true;
+    var loopCount = 0; 
+    while (keepSorting) {
+        console.log(++loopCount);
+
+        var changeMade = false;
+        for (let i=0; i< TABLEROWS.length; i++){
+            if (i < (TABLEROWS.length -1)){
+
+            //check if selected row occurs less than the row after it
+            var selectedRowWord = TABLEROWS[i].childNodes[0].innerHTML;
+            var selectedRowCount = TABLEROWS[i].childNodes[1].innerHTML;
+            var nextRowWord = TABLEROWS[i+1].childNodes[0].innerHTML;
+            var nextRowCount = TABLEROWS[i+1].childNodes[1].innerHTML;
+            
+            if (selectedRowCount < nextRowCount) {
+                changeMade = true;
+                TABLEROWS[i].childNodes[0].innerHTML = nextRowWord;
+                TABLEROWS[i].childNodes[1].innerHTML = nextRowCount;
+                TABLEROWS[i+1].childNodes[0].innerHTML = selectedRowWord;
+                TABLEROWS[i+1].childNodes[1].innerHTML = selectedRowCount;
+            }
+
+            }
+        }
+        changeMade ? keepSorting = true : keepSorting = false;
+    }
+
 }
 
 function modifyWord(word) {
