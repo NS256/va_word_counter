@@ -56,27 +56,42 @@ function createResultsTable(resultArray){
     const MINCOUNT = document.querySelector(".details-to-ignore #minimum-count").value;
 
     //create a table row containing data for each item in result array
-    for (let i = 0; i < resultArray.length; i++){
-        if (resultArray[i].count < MINCOUNT){
-            continue;
-        }
+    if (resultArray.length >= 1){
+
+        for (let i = 0; i < resultArray.length; i++){
+            if (resultArray[i].count < MINCOUNT){
+                continue;
+            }
+            var tableRow = document.createElement("tr");
+            tableRow.setAttribute("class","word-count-result");
+            
+            var wordField = document.createElement("td");
+            wordField.setAttribute("class","result-word");
+            var wordText = document.createTextNode(resultArray[i].word);
+            wordField.appendChild(wordText);
+            
+            var countField = document.createElement("td");
+            countField.setAttribute("class","result-count");
+            var countText = document.createTextNode(resultArray[i].count);
+            countField.appendChild(countText);
+            
+            tableRow.appendChild(wordField);
+            tableRow.appendChild(countField);
+            RESULTTABLE.appendChild(tableRow);
+        } 
+    } else {
         var tableRow = document.createElement("tr");
         tableRow.setAttribute("class","word-count-result");
-        
-        var wordField = document.createElement("td");
-        wordField.setAttribute("class","result-word");
-        var wordText = document.createTextNode(resultArray[i].word);
-        wordField.appendChild(wordText);
-        
-        var countField = document.createElement("td");
-        countField.setAttribute("class","result-count");
-        var countText = document.createTextNode(resultArray[i].count);
-        countField.appendChild(countText);
-        
-        tableRow.appendChild(wordField);
-        tableRow.appendChild(countField);
+
+        var noResultField = document.createElement("td");
+        noResultField.setAttribute("colspan","2");
+
+        var noResultText = document.createTextNode("No results found, try adjusting your filters.");
+
+        noResultField.appendChild(noResultText);
+        tableRow.appendChild(noResultField);
         RESULTTABLE.appendChild(tableRow);
-    }
+    } 
 
     sortTable();
 }
@@ -104,7 +119,7 @@ function sortTable() {
     var keepSorting = true;
     var loopCount = 0; 
     while (keepSorting) {
-        console.log(++loopCount);
+        //console.log(++loopCount);
 
         var changeMade = false;
         for (let i=0; i< TABLEROWS.length; i++){
