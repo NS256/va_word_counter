@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>VA Transcript Counter</title>
+        <title>Word Counter</title>
         <link type="text/css" rel="stylesheet" href="style.css">
         <script src="JS/script.js" defer></script>
     </head>
     <body>
+
+        
         <main>
             <div>
-                <h1>Conversation Transcript Counter</h1>
-                <p>Use this tool to highight any common words in a conversation transcript.</p>
+                <h1>Word Counter</h1>
+                <p>Use this tool to highight any common words in a sentence.</p>
             </div>
             <div class="input-container">
                 <textarea id="transcript"></textarea>
                     <br>
-                <button onclick="countWords()" id="start-count">Count</button>
+                <button onclick="countWords()" id="start-count" class="counter-button">Count</button>
+            </div>
+            <div class="ignore-area">
+                <form class="details-to-ignore">
+                    <div>
+                        <input type="text" id="minimum-count" name="minimum-count" maxlength="3" value="1">
+                        <label for="minimum-count">Minimum Count</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="symbols" id="symbols" checked>
+                        <label for="symbols">Symbols</label>
+                    </div>
+                    <div>
+                        <input type="button" value="Remove Custom Words/Symbols" onclick="showCustomWordsModal()">
+                    </div>
+                </form>
             </div>
             <div class="results-output">
                 <table id="results-table">
@@ -23,8 +40,16 @@
                         <th>Count</th>
                     </tr>
                 </table>
-                <button onclick="clearTable()">Clear</button>
+                <button class="counter-button" id="clear-results">Clear</button>
             </div>
         </main>
+        <div class="words-to-remove-modal-background">
+            <div class="words-to-remove-modal">
+                <p>Use the box below to enter any additional words you want to remove:</p>
+                <textarea></textarea>
+                <br>
+                <button id="save-button" onclick="hideCustomWordsModal()">Save</button>
+            </div>
+        </div>
     </body>
 </html>

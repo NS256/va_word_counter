@@ -1,11 +1,32 @@
-main {
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:display=swap');
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: #0A2342;
+    font-family: 'Epilogue', sans-serif;
+    text-align: center;
+    /*color: white;*/
 }
 
 main {
+    width: 80%;
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+    background-color: #9AADBF;
+    font-weight: 200;
+}
+
+main h1 {
+    padding: 0px;
+    margin: 0px;
+    font-weight: 400;
 }
 
 .input-container #transcript {
@@ -13,26 +34,78 @@ main {
     height: 300px;
 }
 
-.input-container #start-count {
+.counter-button {
     width: 80%;
+    margin: 10px;
+    background-color: #154C8E;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
 }
 
-table {
+.details-to-ignore {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ignore-area #minimum-count {
+    width: 15px;
+}
+
+.details-to-ignore input {
+    position: relative;
+    top: -2px;
+}
+
+.results-output table {
     border-collapse: collapse;
     width: 80%;
+    /*margin: 20px;*/
     margin-left: auto;
     margin-right: auto;
+    
 }
 
-#results-table th{
-    border-color: black;
+#results-table th {
+    border-color: #C1CCD7;
     border-width: 1px;
     border-style: solid;
     font-weight: bold;
 }
 
-#results-table td{
-    border-color: black;
+#results-table td {
+    border-color: #C1CCD7;
     border-width: 1px;
     border-style: solid;
+}
+
+.words-to-remove-modal-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    display: none;
+    justify-content: center;
+}
+
+.words-to-remove-modal {
+    position: relative;
+    top: 15%;
+    width: 600px;
+    height: 400px;
+    background-color: #9AADBF;
+    z-index: 2;
+    border-color:  #0A2342;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.words-to-remove-modal textarea {
+    width: 90%;
+    height: 78%;
 }
