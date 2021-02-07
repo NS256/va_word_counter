@@ -4,6 +4,7 @@
         <title>Word Counter</title>
         <link type="text/css" rel="stylesheet" href="style.css">
         <script src="JS/script.js" defer></script>
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js" defer></script>
     </head>
     <body>
 
@@ -34,10 +35,10 @@
                 </form>
             </div>
             <div class="results-output">
-                <table id="results-table">
+                <table id="results-table" class="sortable-table">
                     <tr id="heading-row">
                         <th>Word</th>
-                        <th>Count</th>
+                        <th class="numeric-sort">Count</th>
                     </tr>
                 </table>
                 <button class="counter-button" id="clear-results">Clear</button>

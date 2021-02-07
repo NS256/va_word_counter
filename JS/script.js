@@ -46,7 +46,9 @@ function loopThroughTranscript(transcriptArray){
             resultArray.push(transcriptWord);
         }
     }
-    createResultsTable(resultArray);
+    var sortedResults = sortTable(resultArray);
+
+    createResultsTable(sortedResults);
 }
 
 function createResultsTable(resultArray){
@@ -92,8 +94,6 @@ function createResultsTable(resultArray){
         tableRow.appendChild(noResultField);
         RESULTTABLE.appendChild(tableRow);
     } 
-
-    sortTable();
 }
 
 function clearTable(clearTranscript){
@@ -113,37 +113,34 @@ function clearTable(clearTranscript){
     }
 }
 
-function sortTable() {
-    const TABLEROWS = document.querySelectorAll(".word-count-result");
-
+function sortTable(resultsArray) {
+    var runsWithoutChange;
+    var changeMade;
     var keepSorting = true;
-    var loopCount = 0; 
+    var arrayLoopCount = 0;
+
     while (keepSorting) {
-        //console.log(++loopCount);
-
-        var changeMade = false;
-        for (let i=0; i< TABLEROWS.length; i++){
-            if (i < (TABLEROWS.length -1)){
-
-            //check if selected row occurs less than the row after it
-            var selectedRowWord = TABLEROWS[i].childNodes[0].innerHTML;
-            var selectedRowCount = TABLEROWS[i].childNodes[1].innerHTML;
-            var nextRowWord = TABLEROWS[i+1].childNodes[0].innerHTML;
-            var nextRowCount = TABLEROWS[i+1].childNodes[1].innerHTML;
-            
-            if (selectedRowCount < nextRowCount) {
-                changeMade = true;
-                TABLEROWS[i].childNodes[0].innerHTML = nextRowWord;
-                TABLEROWS[i].childNodes[1].innerHTML = nextRowCount;
-                TABLEROWS[i+1].childNodes[0].innerHTML = selectedRowWord;
-                TABLEROWS[i+1].childNodes[1].innerHTML = selectedRowCount;
-            }
-
+        arrayLoopCount++;
+        keepSorting = false;
+        changeMade = false;
+        for (let i = 0; i < resultsArray.length; i++){
+            if (i < (resultsArray.length - 1)) {
+                if (resultsArray[i].count < resultsArray[i+1].count) {
+                    changeMade = true;
+                    var elementToMove = resultsArray.splice(i,1);
+                    resultsArray.splice((i+1),0,elementToMove[0]);
+                }
             }
         }
-        changeMade ? keepSorting = true : keepSorting = false;
+
+        if (changeMade){
+            keepSorting = true;
+        } else {
+            keepSorting = false;
+        }
     }
 
+    return resultsArray;
 }
 
 function modifyWord(word) {
